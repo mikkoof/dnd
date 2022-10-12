@@ -73,6 +73,7 @@
   max-width: 800px;
 }
 
+.box,
 .card {
   margin: 1rem;
   padding: 1.5rem;

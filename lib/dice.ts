@@ -7,3 +7,8 @@ export enum die {
   D20 = 20,
   D100= 100
 }
+
+export interface Roll {
+  dice: die[],
+  value: number,
+}

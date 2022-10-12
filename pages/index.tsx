@@ -1,11 +1,17 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import { useCallback, useState } from 'react';
 import RollBox from '../components/RollBox';
-import { die } from '../lib/dice';
+import { die, Roll } from '../lib/dice';
 import styles from '../styles/Home.module.css'
 
+
 const Home: NextPage = () => {
+  const [rolls, setRolls] = useState<Roll[]>([]);
+  const addRoll = useCallback((roll: Roll) => {
+    setRolls([...rolls, roll]);
+  }, [rolls])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -19,9 +25,17 @@ const Home: NextPage = () => {
 
 
         <div className={styles.grid}>
-          <div className={styles.card}>
+          <div className={styles.box}>
             <p>Start by rolling a d20</p>
-            <RollBox bonus={2} die={[die.D4]} />
+            <RollBox bonus={2} die={[die.D20]} addRoll={addRoll} />
+          </div>
+          <div className={styles.box}>
+            <ul>
+              {rolls.map((roll) => (
+                // eslint-disable-next-line react/jsx-key
+                <li>{roll.value}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </main>
