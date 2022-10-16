@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import router from 'next/router';
 import { useCallback, useState } from 'react';
 import RollBox from '../components/RollBox';
 import { die, Roll } from '../lib/dice';
@@ -37,11 +38,12 @@ const Home: NextPage = () => {
               ))}
             </ul>
           </div>
+          <div className={styles.card} onClick={() => router.push('/character')}>
+            To test character sheet
+          </div>
         </div>
       </main>
     </div>
   )
 };
 
-
-export default Home

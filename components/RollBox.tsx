@@ -28,7 +28,7 @@ export default function RollBox({
   }
   return (
     <div onClick={() => handleRoll(die, bonus)} className={styles.box}>
-      {bonus > 0 ? `+${bonus}` : `${bonus}`}
+      {bonus < 0 ? `${bonus}` : `+${bonus}`}
     </div>
   )
 }

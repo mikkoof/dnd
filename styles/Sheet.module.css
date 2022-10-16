@@ -1,0 +1,46 @@
+.container {
+  width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.box {
+  position:absolute;
+  top: 0;
+  left: 0;
+  
+}
+
+.sheet {
+  display: grid;
+  grid-template-columns: repeat(12, 100px [col-start]);
+}
+
+.cell {
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: middle;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #636363;
+  border-radius: 10px;
+}
+
+.nameBox {
+  grid-column-start: 1;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  padding: 0.5rem;
+}
+
+.stats {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+}
+
+.statsBox {
+
+  padding: .5rem;
+}
