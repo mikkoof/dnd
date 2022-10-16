@@ -5,6 +5,7 @@ import CharacterSheet from '../../components/CharacterSheet/CharacterSheet'
 import styles from "../../styles/Sheet.module.css"
 import { useCallback, useState } from 'react'
 import { Character } from '../../lib/types/character'
+import { Roll } from '../../lib/dice'
 
 
 const getCharacterViaAPI = async (url: string): Promise<Character> => {
@@ -25,8 +26,6 @@ function useCharacter() {
     isError: error
   }
 }
-
-
 
 const CharacterPage: NextPage = () => {
 
