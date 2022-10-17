@@ -45,7 +45,7 @@ const CharacterPage: NextPage = () => {
       <ul>
         {rolls.map((roll) => (
           // eslint-disable-next-line react/jsx-key
-          <li>{roll.value}</li>
+          <li>{roll.dice} {roll.value}</li>
         ))}
       </ul>
     </div>

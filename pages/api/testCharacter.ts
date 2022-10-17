@@ -5,6 +5,7 @@ import { Character, StatName } from "../../lib/types/character";
 
 export const testCharacter: Character = {
   name: "Test Character",
+  level: 5,
   stats: [
     {
       name: StatName.STRENGTH,
