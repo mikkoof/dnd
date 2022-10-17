@@ -17,8 +17,8 @@
 }
 
 .cell {
-  margin: 1rem;
-  padding: 1.5rem;
+  margin: 0.7rem;
+  padding: 1rem;
   text-align: middle;
   color: inherit;
   text-decoration: none;
@@ -34,13 +34,46 @@
   padding: 0.5rem;
 }
 
+.hitPointsBox {
+  grid-column-start: 6;
+  grid-column-end: 10 ;
+}
+
 .stats {
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-end: 5;
   grid-row-start: 2;
+  display: grid;
+  grid-template-columns: repeat(5, 100px [col-start]);
+  border: 1px solid #636363;
+  border-radius: 10px;
 }
 
 .statsBox {
-
+  grid-column-start: 1;
+  grid-column-end: 3;
+  text-align: center;
   padding: .5rem;
+}
+
+.proficiencyBox {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  padding: 0.5rem;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(4, 100px [col-start]);
+}
+
+.proficiencyBonus {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.proficiencyText {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  text-align: left;
+  padding: 0.5rem;
+  margin: 1rem;
 }
