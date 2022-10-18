@@ -29,8 +29,7 @@ export const SkillCheck = ({ character, skill, modifier, addRoll }: { character:
     <div className={styles.skillList}>
       <input type="checkbox" checked={proficient ? true : false} disabled={true} className={styles.proficiency} />
       <RollBox bonus={bonus} die={[die.D20]} addRoll={addRoll} />
-      <div className={`${styles.skillName} `}>{skill.name}</div
-      <RollBox bonus={bonus} die={[die.D20]} addRoll={addRoll} />>
+      <div className={`${styles.skillName} `}>{skill.name}</div>
     </div>
   )
 }
