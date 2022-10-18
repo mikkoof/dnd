@@ -1,15 +1,15 @@
 import { Roll } from "../../lib/dice";
-import { Character } from "../../lib/types/character";
+import { Campaign, Character } from "../../lib/types/character";
 import styles from '../../styles/Sheet.module.css'
 import Stats from "./Stats";
 
-const CharacterSheet = ({ character, addRoll }: {
+const CharacterSheet = ({ campaign, character, addRoll }: {
+  campaign: Campaign,
   character: Character,
   addRoll: (roll: Roll) => void
 }) => {
   return (
     <div className={styles.sheet}>
-
       <div className={`${styles.cell} ${styles.nameBox}`}>
         <p>Name:</p>
         <p>{character.name}</p>
@@ -18,7 +18,7 @@ const CharacterSheet = ({ character, addRoll }: {
       <div className={`${styles.cell} ${styles.hitPointsBox}`}>
         <p>HP here</p>
       </div>
-      <Stats character={character} addRoll={addRoll} />
+      <Stats campaign={campaign} character={character} addRoll={addRoll} />
     </div>
   )
 }

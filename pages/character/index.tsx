@@ -4,7 +4,7 @@ import { axiosInstance } from '../../lib/api/axios'
 import CharacterSheet from '../../components/CharacterSheet/CharacterSheet'
 import styles from "../../styles/Sheet.module.css"
 import { useCallback, useState } from 'react'
-import { Character } from '../../lib/types/character'
+import { Campaign, Character } from '../../lib/types/character'
 import { Roll } from '../../lib/dice'
 
 
@@ -27,6 +27,25 @@ function useCharacter() {
   }
 }
 
+const getCampaignViaAPI = async (url: string): Promise<Campaign> => {
+  const { data } = await axiosInstance.get(url)
+  return data
+}
+
+function useCampaign() {
+  const campaignUrl = "/api/campaign"
+  const { data, error } = useSWR(campaignUrl, (url) => getCampaignViaAPI(url), {
+    revalidateOnMount: true,
+    revalidateOnReconnect: true,
+    revalidateOnFocus: true,
+  })
+  return {
+    campaign: data as Campaign,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
+
 const CharacterPage: NextPage = () => {
 
   const [rolls, setRolls] = useState<Roll[]>([]);
@@ -35,10 +54,11 @@ const CharacterPage: NextPage = () => {
   }, [rolls])
 
   const { character, isLoading } = useCharacter()
-  if (isLoading) return (<p>Loading...</p>)
+  const { campaign } = useCampaign();
+  if (isLoading && !campaign) return (<p>Loading...</p>)
   return (<>
     <div className={styles.container}>
-      <CharacterSheet character={character} addRoll={addRoll} />
+      <CharacterSheet campaign={campaign} character={character} addRoll={addRoll} />
     </div>
 
     <div className={styles.box} >

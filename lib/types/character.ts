@@ -27,7 +27,7 @@ export enum SkillName {
   DECEPTION       = "Deception",
   HISTORY         = "History",
   INSIGHT         = "Insight",
-  INTIMIDATIOn    = "Intimidation",
+  INTIMIDATION    = "Intimidation",
   INVESTIGATION   = "Investigation",
   MEDICINE        = "Medicine",
   NATURE          = "Nature",
@@ -40,9 +40,12 @@ export enum SkillName {
   SURVIVAL        = "Survival"
 }
 
+export interface Campaign {
+  skills: Skill[]
+}
+
 export interface Skill {
   name: SkillName | string;
-  proficiency: boolean;
   modifier: StatName | string;
 }
 
