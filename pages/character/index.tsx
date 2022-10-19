@@ -1,4 +1,3 @@
-import { NextPage } from 'next'
 import useSWR from 'swr'
 import { axiosInstance } from '../../lib/api/axios'
 import CharacterSheet from '../../components/CharacterSheet/CharacterSheet'
@@ -6,25 +5,16 @@ import styles from "../../styles/Sheet.module.css"
 import { useCallback, useState } from 'react'
 import { Campaign, Character } from '../../lib/types/character'
 import { Roll } from '../../lib/dice'
+import { GetServerSideProps, NextPage } from 'next'
 
+type Props = {
+  character: Character;
+  campaign: Campaign;
+}
 
 const getCharacterViaAPI = async (url: string): Promise<Character> => {
   const { data } = await axiosInstance.get(url)
   return data
-}
-
-function useCharacter() {
-  const characterUrl = "/api/testCharacter"
-  const { data, error } = useSWR(characterUrl, (url) => getCharacterViaAPI(url), {
-    revalidateOnMount: true,
-    revalidateOnReconnect: true,
-    revalidateOnFocus: true,
-  })
-  return {
-    character: data as Character,
-    isLoading: !error && !data,
-    isError: error
-  }
 }
 
 const getCampaignViaAPI = async (url: string): Promise<Campaign> => {
@@ -32,33 +22,28 @@ const getCampaignViaAPI = async (url: string): Promise<Campaign> => {
   return data
 }
 
-function useCampaign() {
+export const getServerSideProps: GetServerSideProps = async () => {
   const campaignUrl = "/api/campaign"
-  const { data, error } = useSWR(campaignUrl, (url) => getCampaignViaAPI(url), {
-    revalidateOnMount: true,
-    revalidateOnReconnect: true,
-    revalidateOnFocus: true,
-  })
+  const characterUrl = "/api/testCharacter"
+  const [character, campaign] = await Promise.all([getCharacterViaAPI(characterUrl), getCampaignViaAPI(campaignUrl)])
   return {
-    campaign: data as Campaign,
-    isLoading: !error && !data,
-    isError: error
+    props: {
+      character: character,
+      campaign: campaign,
+    }
   }
 }
 
-const CharacterPage: NextPage = () => {
+const CharacterPage: React.FC<Props> = (props: Props) => {
 
   const [rolls, setRolls] = useState<Roll[]>([]);
   const addRoll = useCallback((roll: Roll) => {
     setRolls([...rolls, roll]);
   }, [rolls])
 
-  const { character, isLoading } = useCharacter()
-  const { campaign } = useCampaign();
-  if (isLoading && !campaign) return (<p>Loading...</p>)
   return (<>
     <div className={styles.container}>
-      <CharacterSheet campaign={campaign} character={character} addRoll={addRoll} />
+      <CharacterSheet campaign={props.campaign} character={props.character} addRoll={addRoll} />
     </div>
 
     <div className={styles.box} >
