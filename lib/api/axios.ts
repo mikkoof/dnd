@@ -1,7 +1,9 @@
 import axios, { AxiosRequestConfig } from "axios";
 
 const config: AxiosRequestConfig = {};
-export const baseURL = "http://localhost:3000"
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+
+console.log(baseURL)
 
 config.baseURL = baseURL;
 
