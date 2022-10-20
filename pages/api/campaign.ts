@@ -77,6 +77,10 @@ const testCampaign: Campaign = {
       name: SkillName.SURVIVAL,
       modifier: StatName.WISDOM,
     },
+    {
+      name: "Technology",
+      modifier: StatName.INTELLIGENCE,
+    }
   ]
 }
 

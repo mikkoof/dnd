@@ -1,8 +1,8 @@
-import { die, Roll } from "../../lib/dice";
-import { Character, Skill, Stat } from "../../lib/types/character";
-import RollBox from "../RollBox";
-import styles from '../../styles/Sheet.module.css'
-import { CalculateAbilityModifier, CalculateProficiencyBonus, GetProficiencies } from "../../lib/modifier";
+import { die, Roll } from "../../../lib/dice";
+import { Character, Skill, Stat } from "../../../lib/types/character";
+import RollBox from "../../RollBox";
+import styles from '../../../styles/Sheet.module.css'
+import { CalculateAbilityModifier, CalculateProficiencyBonus, GetProficiencies } from "../../../lib/modifier";
 
 export const SavingThrow = ({ character, stat, addRoll }: { character: Character, stat: Stat, addRoll: (roll: Roll) => void }) => {
   const abilityModifier = CalculateAbilityModifier(stat.value);
@@ -11,7 +11,7 @@ export const SavingThrow = ({ character, stat, addRoll }: { character: Character
   const proficient: boolean = proficiencies.savingThrows.includes(stat.name);
   const bonus = proficient ? abilityModifier + proficiencyBonus : abilityModifier;
   return (
-    <div className={styles.skillList}>
+    <div className={styles.savingThrow}>
       <input type="radio" checked={proficient ? true : false} disabled={true} className={styles.proficiency} />
       <RollBox bonus={bonus} die={[die.D20]} addRoll={addRoll} />
       <div className={styles.skillName}>Saving throw</div>

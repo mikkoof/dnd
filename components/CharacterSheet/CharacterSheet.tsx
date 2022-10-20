@@ -1,7 +1,8 @@
 import { Roll } from "../../lib/dice";
 import { Campaign, Character } from "../../lib/types/character";
-import styles from '../../styles/Sheet.module.css'
-import Stats from "./Stats";
+import styles from "../../styles/Sheet.module.css"
+import HitPointsBox from "./HitPoints/HitPoints";
+import Stats from "./Stats/Stats";
 
 const CharacterSheet = ({ campaign, character, addRoll }: {
   campaign: Campaign,
@@ -15,9 +16,7 @@ const CharacterSheet = ({ campaign, character, addRoll }: {
         <p>{character.name}</p>
       </div>
 
-      <div className={`${styles.cell} ${styles.hitPointsBox}`}>
-        <p>HP here</p>
-      </div>
+      <HitPointsBox />
       <Stats campaign={campaign} character={character} addRoll={addRoll} />
     </div>
   )

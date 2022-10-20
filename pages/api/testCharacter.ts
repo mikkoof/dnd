@@ -37,7 +37,6 @@ export const testCharacter: Character = {
 const handler = createHandler();
 
 handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log("got request")
   return res.status(200).json(testCharacter)
 })
 
