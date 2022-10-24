@@ -3,6 +3,7 @@ export interface Character {
   name: string;
   level: number;
   stats: Stat[];
+  currentHealth: number;
 }
 
 export interface Stat {

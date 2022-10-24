@@ -1,11 +1,11 @@
-import { kStringMaxLength } from "buffer";
 import { NextApiRequest, NextApiResponse } from "next";
 import { createHandler } from "../../lib/api/handler";
 import { Character, StatName } from "../../lib/types/character";
 
 export const testCharacter: Character = {
-  name: "Test Character",
+  name: "Elmon",
   level: 5,
+  currentHealth: 40,
   stats: [
     {
       name: StatName.STRENGTH,
@@ -37,6 +37,7 @@ export const testCharacter: Character = {
 const handler = createHandler();
 
 handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log("Got request for character")
   return res.status(200).json(testCharacter)
 })
 

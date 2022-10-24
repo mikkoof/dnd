@@ -24,3 +24,4 @@ export function GetProficiencies(character: Character): Proficiencies {
     ]
   })
 }
+

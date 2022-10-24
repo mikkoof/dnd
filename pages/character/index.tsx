@@ -2,10 +2,12 @@ import useSWR from 'swr'
 import { axiosInstance } from '../../lib/api/axios'
 import CharacterSheet from '../../components/CharacterSheet/CharacterSheet'
 import styles from "../../styles/Sheet.module.css"
-import { useCallback, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { Campaign, Character } from '../../lib/types/character'
 import { Roll } from '../../lib/dice'
 import { GetServerSideProps, NextPage } from 'next'
+import CharacterProvider, { CharacterContext } from '../../components/CharacterSheet/context'
+import { ActionType } from '../../components/CharacterSheet/characterReducer'
 
 type Props = {
   character: Character;
@@ -35,16 +37,26 @@ export const getServerSideProps: GetServerSideProps = async () => {
 }
 
 const CharacterPage: React.FC<Props> = (props: Props) => {
+  const { dispatch } = useContext(CharacterContext)
+  dispatch({
+    type: ActionType.SET_CHARACTER,
+    payload: {
+      newCharacter: props.character,
+    }
+  })
 
   const [rolls, setRolls] = useState<Roll[]>([]);
   const addRoll = useCallback((roll: Roll) => {
     setRolls([...rolls, roll]);
   }, [rolls])
-
   return (<>
-    <div className={styles.container}>
-      <CharacterSheet campaign={props.campaign} character={props.character} addRoll={addRoll} />
-    </div>
+
+    <CharacterProvider initialCharacter={{ character: props.character }}>
+      <div className={styles.container}>
+        <CharacterSheet campaign={props.campaign} addRoll={addRoll} />
+      </div>
+    </CharacterProvider>
+
 
     <div className={styles.box} >
       <ul>
