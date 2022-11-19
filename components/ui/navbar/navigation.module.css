@@ -1,0 +1,23 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background-color: var(--color-object);
+}
+
+.nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style-type: none;
+
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+.nav a:hover,
+.nav a:focus,
+.nav a:active {
+  text-decoration: underline;
+}

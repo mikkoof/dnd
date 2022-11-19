@@ -1,3 +1,10 @@
+:root {
+  --color-background: #2C3333;
+  --color-object: #395B64;
+  --color-highlight: #A5C9CA;
+  --color-text: #E7F6F2;
+}
+
 html,
 body {
   padding: 0;
@@ -20,7 +27,7 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    color: var(--color-text);
+    background: var(--color-background);
   }
 }
