@@ -10,8 +10,14 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
-        <NavBar />
-        {children}
+        <header>
+          <NavBar />
+        </header>
+        <div className={"container"}>
+          <main>
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   )
