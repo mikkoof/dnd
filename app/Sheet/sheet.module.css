@@ -1,0 +1,7 @@
+.sheet {
+  width: 95%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr [col-start]);
+  grid-template-rows: repeat(auto-fit, 4rem [row-start]);
+}
+
