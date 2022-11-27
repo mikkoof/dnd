@@ -1,7 +1,23 @@
 .sheet {
   width: 95%;
+  margin: 0 2.5% 0 2.5%;
   display: grid;
   grid-template-columns: repeat(12, 1fr [col-start]);
-  grid-template-rows: repeat(auto-fit, 4rem [row-start]);
+  grid-template-rows: repeat(24, 4rem [row-start]);
 }
 
+.cell {
+  margin: 0.1rem;
+  padding: 1rem;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #636363;
+  border-radius: 10px;
+}
+
+.nameBox {
+  grid-column: 1 / 6;
+  grid-row: 1 / 3;
+  padding: 0.5rem;
+  margin:0.5rem;
+}

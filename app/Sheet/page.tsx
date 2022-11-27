@@ -1,15 +1,10 @@
+import NameBox from './nameField'
 import styles from './sheet.module.css'
 
-export default function Sheet({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function Sheet() {
   return (
     <div className={styles.sheet}>
-      <div>
-
-      </div>
+      <NameBox />
     </div>
   )
 }
